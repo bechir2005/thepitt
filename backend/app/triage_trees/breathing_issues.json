@@ -1,0 +1,67 @@
+{
+  "category": "breathing_issues",
+  "label": "Breathing issues",
+  "entry_question": "q1",
+  "questions": {
+    "q1": {
+      "text": "Are you struggling to breathe even while resting, or are your lips/face turning blue?",
+      "type": "yes_no",
+      "red_flag_if": "yes",
+      "next": {
+        "yes": "RESULT_EMERGENCY",
+        "no": "q2"
+      }
+    },
+    "q2": {
+      "text": "Did this breathing difficulty start suddenly (within the last hour)?",
+      "type": "yes_no",
+      "next": {
+        "yes": "q3",
+        "no": "q4"
+      }
+    },
+    "q3": {
+      "text": "Do you have chest tightness or wheezing along with it?",
+      "type": "yes_no",
+      "next": {
+        "yes": "RESULT_URGENT",
+        "no": "RESULT_URGENT"
+      }
+    },
+    "q4": {
+      "text": "How long have you had this breathing difficulty?",
+      "type": "duration_days",
+      "field": "duration_days",
+      "next": {
+        ">3": "RESULT_SEMI_URGENT",
+        "<=3": "RESULT_ROUTINE"
+      }
+    }
+  },
+  "results": {
+    "RESULT_EMERGENCY": {
+      "severity_level": 1,
+      "label": "Emergency",
+      "action": "instruct_er_immediately",
+      "recommended_department": null
+    },
+    "RESULT_URGENT": {
+      "severity_level": 2,
+      "label": "Urgent",
+      "action": "book_same_day",
+      "recommended_department": "Pulmonology"
+    },
+    "RESULT_SEMI_URGENT": {
+      "severity_level": 3,
+      "label": "Semi-urgent",
+      "action": "book_next_available",
+      "recommended_department": "Pulmonology"
+    },
+    "RESULT_ROUTINE": {
+      "severity_level": 4,
+      "label": "Routine",
+      "action": "book_standard_slot",
+      "recommended_department": "General Practice"
+    }
+  }
+}

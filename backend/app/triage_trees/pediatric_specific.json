@@ -1,0 +1,60 @@
+{
+  "category": "pediatric_specific",
+  "label": "Pediatric (child symptoms, described by guardian)",
+  "entry_question": "q1",
+  "questions": {
+    "q1": {
+      "text": "Is the child unresponsive, having trouble breathing, or having a seizure?",
+      "type": "yes_no",
+      "red_flag_if": "yes",
+      "next": {
+        "yes": "RESULT_EMERGENCY",
+        "no": "q2"
+      }
+    },
+    "q2": {
+      "text": "Does the child have a high fever (above 39°C) or has been unusually lethargic/hard to wake?",
+      "type": "yes_no",
+      "next": {
+        "yes": "RESULT_URGENT",
+        "no": "q3"
+      }
+    },
+    "q3": {
+      "text": "How would you describe the child's discomfort: mild, moderate, or significant?",
+      "type": "categorical",
+      "field": "observed_discomfort",
+      "next": {
+        "significant": "RESULT_SEMI_URGENT",
+        "moderate": "RESULT_SEMI_URGENT",
+        "mild": "RESULT_ROUTINE"
+      }
+    }
+  },
+  "results": {
+    "RESULT_EMERGENCY": {
+      "severity_level": 1,
+      "label": "Emergency",
+      "action": "instruct_er_immediately",
+      "recommended_department": null
+    },
+    "RESULT_URGENT": {
+      "severity_level": 2,
+      "label": "Urgent",
+      "action": "book_same_day",
+      "recommended_department": "Pediatrics"
+    },
+    "RESULT_SEMI_URGENT": {
+      "severity_level": 3,
+      "label": "Semi-urgent",
+      "action": "book_next_available",
+      "recommended_department": "Pediatrics"
+    },
+    "RESULT_ROUTINE": {
+      "severity_level": 4,
+      "label": "Routine",
+      "action": "book_standard_slot",
+      "recommended_department": "Pediatrics"
+    }
+  }
+}

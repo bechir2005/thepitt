@@ -1,0 +1,10 @@
+{
+  "global_red_flags": [
+    { "keyword": "loss of consciousness", "severity_level": 1 },
+    { "keyword": "can't breathe", "severity_level": 1 },
+    { "keyword": "severe bleeding", "severity_level": 1 },
+    { "keyword": "face drooping", "severity_level": 1 },
+    { "keyword": "slurred speech", "severity_level": 1 },
+    { "keyword": "arm weakness", "severity_level": 1 }
+  ]
+}

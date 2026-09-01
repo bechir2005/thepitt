@@ -1,0 +1,70 @@
+{
+  "category": "chest_pain",
+  "label": "Chest / Heart related",
+  "entry_question": "q1",
+  "questions": {
+    "q1": {
+      "text": "Is the pain sudden and severe, radiating to your arm, jaw, or back?",
+      "type": "yes_no",
+      "red_flag_if": "yes",
+      "next": {
+        "yes": "RESULT_EMERGENCY",
+        "no": "q2"
+      }
+    },
+    "q2": {
+      "text": "On a scale of 1 to 10, how would you rate the pain?",
+      "type": "scale_1_10",
+      "field": "pain_level",
+      "next": {
+        "8-10": "q3",
+        "4-7": "q4",
+        "1-3": "RESULT_ROUTINE"
+      }
+    },
+    "q3": {
+      "text": "Are you also experiencing shortness of breath or sweating?",
+      "type": "yes_no",
+      "red_flag_if": "yes",
+      "next": {
+        "yes": "RESULT_EMERGENCY",
+        "no": "RESULT_URGENT"
+      }
+    },
+    "q4": {
+      "text": "How long has the pain lasted?",
+      "type": "duration_minutes",
+      "field": "duration_minutes",
+      "next": {
+        ">30": "RESULT_URGENT",
+        "<=30": "RESULT_SEMI_URGENT"
+      }
+    }
+  },
+  "results": {
+    "RESULT_EMERGENCY": {
+      "severity_level": 1,
+      "label": "Emergency",
+      "action": "instruct_er_immediately",
+      "recommended_department": null
+    },
+    "RESULT_URGENT": {
+      "severity_level": 2,
+      "label": "Urgent",
+      "action": "book_same_day",
+      "recommended_department": "Cardiology"
+    },
+    "RESULT_SEMI_URGENT": {
+      "severity_level": 3,
+      "label": "Semi-urgent",
+      "action": "book_next_available",
+      "recommended_department": "Cardiology"
+    },
+    "RESULT_ROUTINE": {
+      "severity_level": 4,
+      "label": "Routine",
+      "action": "book_standard_slot",
+      "recommended_department": "General Practice"
+    }
+  }
+}

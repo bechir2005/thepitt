@@ -1,0 +1,25 @@
+{
+  "category": "routine_checkup",
+  "label": "Other / Routine checkup",
+  "entry_question": "q1",
+  "questions": {
+    "q1": {
+      "text": "Is this a general checkup, follow-up visit, or prescription renewal?",
+      "type": "categorical",
+      "field": "visit_reason",
+      "next": {
+        "checkup": "RESULT_ROUTINE",
+        "follow_up": "RESULT_ROUTINE",
+        "prescription": "RESULT_ROUTINE"
+      }
+    }
+  },
+  "results": {
+    "RESULT_ROUTINE": {
+      "severity_level": 4,
+      "label": "Routine",
+      "action": "book_standard_slot",
+      "recommended_department": "General Practice"
+    }
+  }
+}

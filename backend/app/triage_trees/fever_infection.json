@@ -1,0 +1,59 @@
+{
+  "category": "fever_infection",
+  "label": "Fever / Infection",
+  "entry_question": "q1",
+  "questions": {
+    "q1": {
+      "text": "Is your temperature above 39.5°C (103°F), or do you have a stiff neck, severe headache, or confusion along with the fever?",
+      "type": "yes_no",
+      "red_flag_if": "yes",
+      "next": {
+        "yes": "RESULT_EMERGENCY",
+        "no": "q2"
+      }
+    },
+    "q2": {
+      "text": "How many days have you had the fever?",
+      "type": "duration_days",
+      "field": "duration_days",
+      "next": {
+        ">3": "RESULT_URGENT",
+        "<=3": "q3"
+      }
+    },
+    "q3": {
+      "text": "Do you have any other symptoms like rash, difficulty swallowing, or persistent vomiting?",
+      "type": "yes_no",
+      "next": {
+        "yes": "RESULT_SEMI_URGENT",
+        "no": "RESULT_ROUTINE"
+      }
+    }
+  },
+  "results": {
+    "RESULT_EMERGENCY": {
+      "severity_level": 1,
+      "label": "Emergency",
+      "action": "instruct_er_immediately",
+      "recommended_department": null
+    },
+    "RESULT_URGENT": {
+      "severity_level": 2,
+      "label": "Urgent",
+      "action": "book_same_day",
+      "recommended_department": "General Practice"
+    },
+    "RESULT_SEMI_URGENT": {
+      "severity_level": 3,
+      "label": "Semi-urgent",
+      "action": "book_next_available",
+      "recommended_department": "General Practice"
+    },
+    "RESULT_ROUTINE": {
+      "severity_level": 4,
+      "label": "Routine",
+      "action": "book_standard_slot",
+      "recommended_department": "General Practice"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "category": "injury_trauma",
+  "label": "Injury / Trauma",
+  "entry_question": "q1",
+  "questions": {
+    "q1": {
+      "text": "Is there heavy bleeding that won't stop, a suspected broken bone with visible deformity, or a head injury with confusion/loss of consciousness?",
+      "type": "yes_no",
+      "red_flag_if": "yes",
+      "next": {
+        "yes": "RESULT_EMERGENCY",
+        "no": "q2"
+      }
+    },
+    "q2": {
+      "text": "On a scale of 1 to 10, how severe is the pain from the injury?",
+      "type": "scale_1_10",
+      "field": "pain_level",
+      "next": {
+        "8-10": "RESULT_URGENT",
+        "4-7": "RESULT_SEMI_URGENT",
+        "1-3": "RESULT_ROUTINE"
+      }
+    }
+  },
+  "results": {
+    "RESULT_EMERGENCY": {
+      "severity_level": 1,
+      "label": "Emergency",
+      "action": "instruct_er_immediately",
+      "recommended_department": null
+    },
+    "RESULT_URGENT": {
+      "severity_level": 2,
+      "label": "Urgent",
+      "action": "book_same_day",
+      "recommended_department": "Orthopedics"
+    },
+    "RESULT_SEMI_URGENT": {
+      "severity_level": 3,
+      "label": "Semi-urgent",
+      "action": "book_next_available",
+      "recommended_department": "Orthopedics"
+    },
+    "RESULT_ROUTINE": {
+      "severity_level": 4,
+      "label": "Routine",
+      "action": "book_standard_slot",
+      "recommended_department": "General Practice"
+    }
+  }
+}
