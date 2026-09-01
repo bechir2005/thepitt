@@ -48,6 +48,8 @@ export default function Login({ onLoginSuccess }) {
 
   return (
     <div style={styles.container}>
+      <h1 style={styles.hospitalName}>SBIKHA'S LOCAL HOSPITAL</h1>
+
       <div style={styles.card}>
         <h1 style={styles.title}>Hospital Intake</h1>
 
@@ -88,17 +90,42 @@ export default function Login({ onLoginSuccess }) {
 
         {error && <p style={styles.error}>{error}</p>}
       </div>
+
+      <div style={styles.credit}>created by mohamed bechir krim</div>
     </div>
   );
 }
 
 const styles = {
   container: {
+    position: "relative",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
     backgroundColor: "#f4f6f8",
+    padding: "2rem",
+    boxSizing: "border-box",
+  },
+  hospitalName: {
+    fontSize: "clamp(1.8rem, 5vw, 3rem)",
+    fontWeight: 800,
+    letterSpacing: "0.05em",
+    textAlign: "center",
+    color: "#1e3a8a",
+    marginBottom: "2.5rem",
+    textTransform: "uppercase",
+    textShadow: "0 2px 12px rgba(37, 99, 235, 0.15)",
+    fontFamily: "Georgia, 'Times New Roman', serif",
+  },
+  credit: {
+    position: "fixed",
+    bottom: "0.75rem",
+    right: "1rem",
+    fontSize: "0.7rem",
+    color: "#9aa4b2",
+    fontStyle: "italic",
   },
   card: {
     backgroundColor: "#fff",
